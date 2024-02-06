@@ -7,16 +7,36 @@ import AppMain from './components/AppMain.vue';
 export default {
   name: "Vite yu-gi-oh",
   components: { AppMain, AppHeader },
+
+  methods: {
+
+    fetchCharacters(endpoint) {
+      axios.get(endpoint).then(res => {
+        store.characters = res.data.docs;
+      })
+    },
+
+    selectType(option) {
+      if (option === "All") {
+        this.fetchCharacters(endpoint);
+      } else {
+        const selectEndpoint = `${endpoint}?eq[type1]=${option}`
+        this.fetchCharacters(selectEndpoint);
+        console.log(selectEndpoint)
+      }
+    }
+  },
+
   created() {
-    axios.get(endpoint).then(res => {
-      store.characters = res.data.docs;
-    })
+    this.fetchCharacters(endpoint);
   },
 }
 </script>
 
 <template>
-  <AppHeader />
+  <!-- Header Component -->
+  <AppHeader @select-type="selectType" />
+  <!-- Main Component -->
   <AppMain />
 </template>
 

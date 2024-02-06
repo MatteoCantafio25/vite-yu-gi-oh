@@ -1,19 +1,36 @@
 <script>
+import SelectType from './SelectType.vue';
 export default {
     name: "AppHeader",
+    components: {
+        SelectType,
+    },
+
+    emits: ["select-type"],
+
+    methods: {
+        submitOption(option) {
+            this.$emit('select-type', option)
+        }
+    }
 };
 </script>
 
 <template>
+    <!-- Header -->
     <header class="my-4">
+        <!-- Left side Header -->
         <div class="left">
             <div class="blue-circle rounded-circle large bg-blue"></div>
         </div>
+        <!-- Right side Header -->
         <div class="right d-flex gap-3">
             <div class="red-circle rounded-circle small bg-red"></div>
             <div class="yellow-circle rounded-circle small bg-yellow"></div>
             <div class="greem-circle rounded-circle small bg-green"></div>
         </div>
+        <!-- Select Component -->
+        <SelectType @submit-option="submitOption" />
     </header>
 </template>
 

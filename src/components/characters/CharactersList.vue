@@ -13,9 +13,13 @@ export default {
 </script>
 
 <template>
+    <!-- Container -->
     <section id="pokemon-characters" class="my-5">
+        <!-- Row -->
         <div class="row g-2 row-cols-5">
-            <div class="col" v-for="character in store.characters" :key="character.id">
+            <!-- Col -->
+            <div class="col" v-for="character in store.characters" :key="character._id">
+                <!-- Card Component -->
                 <CharacterCard :name="character.name" :image="character.imageUrl" :num="character.number"
                     :type1="character.type1" />
             </div>

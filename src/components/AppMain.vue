@@ -7,7 +7,9 @@ export default {
 </script>
 
 <template>
+    <!-- Container -->
     <main class="container pokedex-base">
+        <!-- Characters List Component -->
         <CharactersList />
     </main>
 </template>
