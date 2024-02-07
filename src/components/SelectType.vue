@@ -1,49 +1,32 @@
 <script>
 export default {
     name: "SelectType",
-    data: () => ({
-        options: [
-            "Bug",
-            "Dark",
-            "Dragon",
-            "Electric",
-            "Fairy",
-            "Fighting",
-            "Fire",
-            "Flying",
-            "Ghost",
-            "Grass",
-            "Ground",
-            "Ice",
-            "Normal",
-            "Poison",
-            "Psychic",
-            "Rock",
-            "Steel",
-            "Water"
-        ],
-        selectOption: "All",
-    }),
     emits: ["submit-option"],
-
+    data: () => ({
+        selectedOption: "All",
+    }),
     methods: {
         submitOption() {
-            this.$emit('submit-option', this.selectOption);
-            console.log("select option", this.selectOption)
+            this.$emit('submit-option', this.selectedOption);
+            console.log("select option", this.selectedOption)
         },
 
         resetOption() {
             this.submitOption();
         }
+    },
+    props: {
+        defaultLabel: String,
+        options: Array
     }
 };
 </script>
 
 <template>
     <!-- Select -->
-    <select @change="submitOption" v-model="selectOption">
+    <select @change="submitOption" v-model="selectedOption">
         <!-- Options -->
-        <option @change="resetOption" selected>All</option>
+        <option @change="resetOption" selected>{{ defaultLabel }}</option>
         <option v-for="(option, i) in options" :key="i" :value="option">{{ option }}</option>
     </select>
 </template>

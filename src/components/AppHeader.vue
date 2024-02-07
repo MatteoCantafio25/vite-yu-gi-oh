@@ -2,6 +2,28 @@
 import SelectType from './SelectType.vue';
 export default {
     name: "AppHeader",
+    data: () => ({
+        options: [
+            "Bug",
+            "Dark",
+            "Dragon",
+            "Electric",
+            "Fairy",
+            "Fighting",
+            "Fire",
+            "Flying",
+            "Ghost",
+            "Grass",
+            "Ground",
+            "Ice",
+            "Normal",
+            "Poison",
+            "Psychic",
+            "Rock",
+            "Steel",
+            "Water"
+        ],
+    }),
     components: {
         SelectType,
     },
@@ -12,7 +34,9 @@ export default {
         submitOption(option) {
             this.$emit('select-type', option)
         }
-    }
+    },
+
+
 };
 </script>
 
@@ -30,7 +54,7 @@ export default {
             <div class="greem-circle rounded-circle small bg-green"></div>
         </div>
         <!-- Select Component -->
-        <SelectType @submit-option="submitOption" />
+        <SelectType default-label="All" :options="options" @submit-option="submitOption" />
     </header>
 </template>
 
